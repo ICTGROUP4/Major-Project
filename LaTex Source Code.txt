@@ -1,0 +1,388 @@
+\documentclass[12pt, a4paper]{article} % General settings in the beginning (defines the document class of your paper)
+
+\usepackage{hyperref}
+\usepackage{geometry}
+\usepackage{amssymb}
+\usepackage{amscd}
+\usepackage{color}
+\usepackage{graphicx}
+\usepackage{subfigure}
+\usepackage{epstopdf}
+\usepackage{url}
+\usepackage{geometry}
+\usepackage{amsmath}
+
+\usepackage[T1]{fontenc}
+
+% Customize page headers
+\pagestyle{myheadings}
+\markright{\name}
+\thispagestyle{empty}
+
+\setlength\parindent{0em}
+
+\renewenvironment{itemize}{
+	\begin{list}{}{
+			\setlength{\leftmargin}{1.5em}
+			\setlength{\itemsep}{0.25em}
+			\setlength{\parskip}{0pt}
+			\setlength{\parsep}{0.25em}
+		}
+	}{
+	\end{list}
+}
+\geometry{
+	body={6.5in, 10.0in},
+	left=1.0in,
+	top=1.0in
+}
+
+\begin{document}
+
+	\begin{center}
+	\begin{Large} {Ideation Report\\Remote Controlled Robo Car}\end{Large}\\ ~~~ \\
+	Jeet Daiya (202301017), Kavy Sanghani (202301044), Samarth Agrawal (202301040), Manav Kalavadiya (202301054), Shivam Patel (202301033), Ramoliya Shivam (202301049), Dhruvil Patel (202301035), Pal Kaneria  (202301021)\\ ~~~ \\
+    Dhirubhai Ambani Institute of Information \& Communication Technology, Gandhinagar, Gujarat 382007, India\\ ~~~ \\
+    Project Group-4\\IC101 (Introduction to ICT): Final Semester Project
+    %\author{name1 (ID2)}
+    %\affiliation{Dhirubhai Ambani Institute of Information \& Communication Technology, Gandhinagar, Gujarat 382007, India\\SC221, Engineered Materials}
+	
+	\end{center}
+
+	\bigskip
+	
+\begin{abstract}
+This report mainly focuses on the ideation part of developing an RF-controlled car. The main aim of the project is to create an end product with good design. The literature survey of the report covers various topics, from RF technology to DC motor characteristics, to the various approaches taken by people around the world along with historical development of the technology. The report highlights AutoCAD design, ergonomic considerations, and provides a detailed explanation of the PCB design. The project aims to deliver an RF-controlled car that excels in performance and ergonomic optimization.
+
+\end{abstract}
+\setcounter{page}{1} % Sets counter of page to 1
+
+\section{Introduction} % Add a section title
+As we read the project announcement, our minds ignited with a plethora of ideas.
+Ideas of how we should make it, how it should perform, and most importantly, how it looks. It was like Jules Verne inside us came to life. Each Member of the team contributed to the sea of endless possibilities.\\
+
+
+All of this creativity was fueled even more by the I.Bot event in I.Fest.
+Where we saw Remote-Controlled Cars maneuvering through various kinds of obstacles at high speeds.The thrilling competition against the clock showed the importance of maneuverability with speed and precision.They sort of became the benchmark for our project.\\
+
+
+But as the initial surge of curiosity settled, we were surrounded by mountains of doubt. How will we do it? What components shall we use? What should we do to ensure it does not tip off from the slope? How do we make the Bot quick? How do we do it without a microcontroller? And the questions didn't end.\\
+
+
+But, as we sat down and discussed with each other, the storm of doubts and anxiety dissipated. In the initial meetings, we tried to think about how we should make the Bot quick.
+We thought and researched many ways to increase the motor speed, which mode shall we choose? And which is doable considering we do not have to use a microcontroller? What approach do we take to increase its run time? All of this was needed at a minimal cost.\\
+
+
+As we paved our way through these decisions, our collaborative efforts laid the foundation for a clear roadmap of how we should proceed.\\
+
+
+
+
+\section{Literature Survey} 
+1)\textbf{A report on RF Controlled Car}\\
+
+This research paper provides an in-depth analysis of radio as well as radio-controlled technology, shedding light on the special properties of radio frequency, its working area, and the generation of radio frequency with a block diagram of a basic generator. The paper later discusses its application to make a remote-controlled car and compares RF with its counterpart modes of communication. The document gives a comprehensive view of all the components which are generally used to make an RF-controlled car, such as voltage regulators, L293D motor driver, transmitter-receiver, and encoder-decoder. The paper provides insight into the working behind transmitter-receiver, encoder-decoders. It also discusses the functionality of each pin in the above-mentioned ICs and circuits, accompanied by illustrative block diagrams. In the end, the paper gives the future scope of RF technology within the field of robotics, highlighting the potential advancement.\\
+
+
+
+
+2)\textbf { DC Motor Characteristics}\\
+
+This article discusses DC Motor characteristics and its basic advantages and disadvantages over other counterparts.It provides a peek into the performance of DC motor during its operation. DC motors boast advantages like precise speed, control and simplicity, but susceptibility to wear and tear is needed to be considered. The graphs in this article gives the behavior of DC motor in real-time usage.\\
+
+3)\textbf{ DC Motor Properties}\\
+
+This article especially was one of the most important for us to determine which motor shall we use. The article discusses the speed and torque characteristics of a D.C series motor . The article shows the relationship of torque and speed with armature current. Armature current (\(I\)) in a DC series motor refers to the electric current flowing through the armature winding, induced as the armature rotates within the magnetic field.  The article reveals that in a DC series motor, the speed is inversely related to the armature current.\\
+\[ \text{speed} \propto \frac {1}I \]                   
+
+While torque is directly related to armature current.\\
+\[ \tau \propto I \]                              
+Using these two relations it is derived that speed is inversely proportional to the square root of torque.\\
+\[ \text{speed} \propto \frac{1}{\sqrt{\tau}} \] \\
+ This means a motor with high speed would have low torque, which might cause issues while the car is going up the slope. 
+The article also discusses speed-torque characteristics of DC shunt motors. Which has a speed-control advantage despite low starting torque compared to DC series motor.
+\newpage
+4) \textbf{AI Controlled RC car}\\
+
+This blog discusses how to make an autonomous  RC car that can run autonomously on a predefined track. The car uses Raspberry Pi along with the Raspberry Pi Camera Module. The car uses machine learning to train neural pathways which are then used to avoid obstacles and reroute itself back on the track. The car uses a Raspberry Pi paired with Raspberry Pi Camera Module a L293D motor driver and Powerbank. The Camera captures the image and processes it using a pre-trained model and decides the path. The machine learning model, which was used to train neural pathways was coded in Python and integrated with Raspberry Pi.\\
+
+5) \textbf{Operation of Radio Controlled Car using Face Image }\\
+
+This paper discusses how to control a radio-controlled car using facial images taken as input via a webcam. The captured images are processed into a digital signal, which is further converted into a radio signal and transmitted to the car. The experiment employs a basic RC car readily available in the market. A computer program written in MATLAB processes the input obtained from the webcam. The program is designed to recognize facial expressions, particularly by tracking the eye position relative to a reference line. This method allows the generation of nine different commands that can be sent to control the car which were: 1) Stop, 2) Forward, 3) Reverse, 4) Turn Left, 5) Turn Right, 6) Forward and Turn Left, 7) Reverse and Turn Left, 8) Forward and Turn Right, and 9) Reverse and Turn Right. This innovative integration of facial recognition technology with a familiar RC car opens avenues for interactive and engaging human-machine interactions.\\
+
+6) \textbf{Android Controlled RC car }\\
+
+This report introduces an Android-controlled RC car with obstacle avoidance. The car uses an ultrasonic sensor for the object avoidance system, Bluetooth Module, and Arduino UNO microcontroller. The project uses smartphone sensors to give commands for control of the car. Which are then received by Bluetooth and processed using Arduino to control motors. Bluetooth ensures seamless remote control.\\
+
+7) \textbf{Voice Controlled RC car}\\
+
+This paper introduces a car controlled by voice commands. Using Arduino UNO and Bluetooth Module (HC-05), the system interprets voice commands received through an Android Application. The Module receives the commands and conveys them to Arduino, which processes and executes controls. The car also uses an Ultrasonic sensor for object detection. Using a program, the Bluetooth module and Arduino are linked with each other as well as with the mobile application.
+
+
+
+
+
+ 
+
+
+\subsection{Historical Development}
+
+Radio-controlled systems and remote-controlled systems are nowadays very common, but these systems are inventions born in the late 1800s. In 1898, the renowned Serbian-American inventor Nikola Tesla created one of the world’s first radio-controlled systems. To demonstrate it, he used it on a boat. Although it was a flop financially, the concept was a hit and quickly started spreading to many other equipments. In fact, Tesla was tinkering with this technology in 1895. He was able to receive frequencies as far as thirty miles.\\
+
+
+Shortly after Tesla's demonstrations, Spanish engineer Leonardo Torres-Quevedo used a wireless telegraph transmitters to control first a tricycle, then an engine-powered boat, and even submarine torpedoes. \\
+
+
+The demands of WWI and WWII played an important factor in the development of radio-controlled systems, German Navy as well as Allied Navy used radio-controlled explosive-laden boats, guided missiles, and torpedoes.\\
+
+
+By the 1950s this technology started trickling to the consumer market. But it was still expensive and inefficient as it still used tubes. As the 1960s approached transistors completely replaced tubes. This reduced its size and battery requirements, thereby it became more portable and cost reduced greatly.\\
+
+
+The first remote-controlled (RC) car was invented in 1966 by the Italian company El-Gi (Elettronica Giocattoli). The model was a 1:12 scale Ferrari 250LM that ran on nitromethane. It had a radio-controlled on-off motor function but no reverse.  \\
+
+
+The 1980s and 1990s witnessed the maturation of transistor technology, hobbyists started using it in various places like model aircrafts, cars etc. This era saw an exponential improvement in efficiency, range, and functionality. Things like Ni-Cd batteries, which were heavy and large in size were being replaced by Li-ion batteries.\\
+
+
+
+The 21st brought a digital revolution in Radio Controlled Systems . Due to which advanced programming features and reliability became standard.As 2.4GHz radio systems markedly decreased conflicts between competing systems, providing enthusiasts with unprecedented control and capabilities.This system gave us more power in hands than we have ever had.
+
+
+
+
+
+\section{Our Approach}
+
+\subsection{AutoCAD Drawing}\\
+
+
+
+
+The AutoCAD design illustrates a three-wheeled car chassis. The design prioritizes a compact structure for improved maneuverability and high agility which is necessary in case of a track with various turns and obstacles.\\
+
+
+We tried to incorporate real-world dimensions in the AUTOCAD design. This helps in understanding the stability of the car and placement of the circuitry and antenna which ensures accurate RF control.\\
+
+The design also helped us understand the weight distribution of car. Which is essential when going up the slope.\\
+\newpage
+\begin{figure}[!h]
+    \centering
+    \includegraphics[width = 4.50 in]{Untitled.png}
+    
+    
+   \end{figure}
+\begin{figure}[!h]
+\centering
+\includegraphics[width=4.50 in]{AUTOCAD-2.jpeg}
+\caption{Figure shows different views of the 3-D model}
+\end{figure}\\
+
+
+\section{Mechanical Design}
+The mechanical design of the car was done, keeping cost-effectiveness as well as a good-looking end product in mind. The three-wheeled design ensures good agility around tight turns. Materials were chosen with structural integrity in mind, and we opted for a streamlined body shape for better performance. Considerations were also given to weight distribution, playing a key role in maintaining the stability of the car.
+
+To keep the design ergonomic, the placement of switches on the remotes was done while keeping user comfort in mind. The battery pack is kept in such a way that it can be replaced easily. The circuit arrangements are also done with practicality in mind.
+
+\section{Electronics Design}
+This section of the report focuses on the components chosen to make the car a reality, their technical specifications, the overall cost and the circuitry.
+
+\subsection{Basic Components of the Robo Car}
+\subsubsection{433MHz RF Transmitter Receiver Wireless Module:}\\
+
+The RF Transceiver Module provides a complete RF transmitter and receiver module solution which can be used to transmit data at up to 3KHz. The module offers low current consumption (-11mA) and provides wide operating voltage. Data can be sent directly from an encoding device, thus making circuit more simple by reducing number of components needed.\\
+
+\textbf{Specifications:}\\
+1)Range in open space(Standard Conditions): 100 Meters\\
+2)RX Receiver Frequency: 433 MHz\\
+3)RX Operating Voltage: 5V\\
+4)TX Frequency Range: 433.92 MHz\\
+5)TX Supply Voltage: 3V - 6V\\
+6) TX Out Put Power: 4 - 12 Dbm\\
+\subsubsection{L923D Motor Driver:}\\
+The L293D motor driver is an IC that controls the direction and speed of DC motors. We can use a single IC for operating two motors simultaneously. This driver is widely used in robotics and presents a simple solution to motor control in projects.\\
+
+\textbf{Specifications:}\\
+1)Supply Voltage: 4.5V to 7V\\
+2)Motor voltage: 4.5V to 36V\\
+3)Transition time: 300ns\\
+4)Peak output current: 1.2A\\
+\subsubsection{HT12E and HT12D:}
+'E' and 'D' stand for encoder and decoder respectively. These are 12-bit encoders and decoders are used only in pairs. To make sure the encoder IC does not communicate with another decoder, a common address is shared between the pair which is of 8 bits. That means 8 bits will be used for address while the remaining 4 bits are used for data transmission. Thus with 4 data bits, we can create 16 different combinations.\\
+
+\textbf{Specifications:}\\
+1)Operative Voltage : 2.4V - 12V for both encoder and decoder.\\
+2)Low Stand-by current.\\
+\subsubsection{IC7805}\\
+The 7805 Voltage Regulator IC is a commonly used voltage regulator that finds its application in most of electronics projects. It provides a constant +5V output voltage for a variable input voltage supply.\\
+
+\textbf{Specifications:}\\
+1)Operating Voltage: 7V-25V\\
+2)Operating current: 5mA\\
+3)Junction Temperature maximum 125 degree Celsius.\\
+
+
+\subsubsection{12V Lithium Ion Battery}\\
+Lithium Ion Battery is because of its high power carrying capacity with respect to weight and its recharging capabilities. They ensure prolonged usage of the car without compromising performance.\\
+\textbf{Specifications:}\\
+
+1)Charging Voltage- 12.6V\\
+2)Charging Current- 600mA\\
+3)Nominal Pack Voltage- 11.1V\\
+4)Max Discharge current - 1.2mA\\
+5)BMS included (Battery Management System)\\
+
+
+\subsubsection{DC Motor}\\
+This is a geared motor, which offers high torque. The motor has excellent stall characteristics, so it can climb slopes very easily. The motor also comes with a hex nut to make the mounting process easier along with a hole in the shaft to make assembly easier.\\
+\textbf{Specifications:}\\
+
+1)Rated Torque: 2.0kg-cm\\
+2)Operating Voltage: 4V-12V\\
+3)Load Current Max: 300mA\\
+4)Rated RPM: 300RPM\\
+
+
+
+
+\subsection{Bill of Material (BOM)} \label{BOM}
+\begin{tabular}{|c|c|c|}
+  \hline
+  \textbf{Component} & \textbf{Price for single component} & \textbf{Price in bulk}  \\
+  \hline
+  1) RF Transmitter and Receiver & 145/- & 85/- \\
+  \hline
+  2) L293D & 22 & 18 \\
+  \hline
+  3) 12V Lithium Ion Battery & 600/- & 515\\
+  \hline
+  4) 16 pin IC holder & 5/- & 3/- \\
+  \hline
+  5) 18 pin IC holder & 7/- & 3/- \\
+  \hline
+  6) 12V 300 RPM DC motor & 145/- & 108/- \\
+  \hline
+  7) LED Light & 6/- & 2/-\\
+  \hline
+  8) PCB & 25-39/- & 12-20/-\\
+  \hline
+  9) IC7805 & 9/- & 7/- \\
+  \hline
+  10) IC7805 heatsink & 9/- & 6/- \\
+  \hline
+  11) Wires (Set of 10) & 15/- & 10/- \\
+  \hline
+  12) 9V battery & 25/- & 18/- \\
+  \hline
+  13) 100mm x 40mm Wheels & 45/- & 30/- \\
+  \hline
+  14) 360 Caster Wheel & 19/- & 14/- \\
+  \hline
+  
+  \textbf{TOTAL} & \textbf{1130 }& \textbf{845} \\
+  
+  \hline
+\end{tabular}
+
+\subsection{PCB Design}
+\subsubsection{Transmitter Circuit}
+Fig. \ref{fig:2} illustrates a schematic of the transmitter circuit which is used to remote the car.  The circuit consists of a radio transmitter of 433MHz, HT12E encoder, voltage regulator, and 4 push button switches.  When a command is given through push button switches, it is directed to the encoder which encodes it and transmits it via the transmitter. The voltage to the encoder is given from the collector of IC7805. \\
+\begin{figure}[!h]
+    \centering
+    \includegraphics[width = 3.1in]{WhatsApp Image 2023-11-26 at 5.22.57 PM (1).jpeg}
+    \caption{3-D view and schematic of the transmitter circuit.}
+    \label{fig:2}
+\end{figure}\\
+
+\subsubsection{Reciever Circuit}
+Fig. \ref{fig:3} illustrates a schematic of the receiver circuit which is integrated into the chassis of the car. The circuit consists of a superheterodyne receiver, HT12D decoder, L293D motor driver, IC7805 voltage regulator, 12V DC motors, and battery to run the circuit. The VCC of the decoder is connected to the collector of regulator voltage which in turn is connected to the battery. An LED is connected to the receiver to ensure it is working. The receiver gets the signal and converts it into an electric signal which is then directed to the decoder. The decoder then processes the signal and passes it to the motor driver. The motor driver is powered by VCC(1) which is connected to the collector(output) of the regulator. The positive terminal of the motors are connected to the 3rd and 6th pins of the motor driver. The negative terminal of the motors are connected to the 11th and 14th pin of the motor driver. The power supply for the motor is connected to the 8th pin of the motor driver. The motor driver controls the speed and direction of the motor.\\
+\begin{figure}[!h]
+    \centering
+    \includegraphics[width = 3.1in]{WhatsApp Image 2023-11-26 at 5.22.57 PM.jpeg}
+    \caption{3-D view and schematic of the transmitter circuit.}
+    \label{fig:3}
+\end{figure}\\
+
+
+
+\section{Conclusion}
+The ideation part of the RF-controlled car reflects a journey from mere imagination to strategic outlines. Inspired by the I.Bot event, the team tackled the doubts that came in the way. The literature survey provides us with an idea of how people have used the technology and also provides ideas about some components used. The AutoCAD design provides a compact, three-wheeled car with optimal stability and ergonomics along with PCB design that provides a strong foundation. As the ideation part of the project
+takes shape, it ensures us a smooth transition to the second part of the project, which is the practical application of our ideas.
+
+\section{Acknowledgment} 
+1) Prof. Ajaykumar Daiya ,BVM Engineering College\\
+2) EHC club, DA-IICT\\
+3) Ramesh Sir , DA-IICT\\
+\begin{thebibliography}{}
+\bibitem{A report on Rf controlled car} 
+Patel Pareshkumar A.,Padhiar Nirmal G. ,Patel Akash R.  
+\textit{A report on RF controlled car}. 
+Venus International College of Technology.\\
+\textit{https://www.slideshare.net/itfakash/a-report-on-rf-controlled-car}
+
+\bibitem{DC Motor Characteristics}
+\textit{DC Motor Characteristics from Groschopp.com}\\
+\textit{https://www.groschopp.com/dc-motor-basics/}
+
+
+\bibitem{DC Motor Properties} 
+Habib. \textit{Speed Torque Characteristics of D.C Motor-Easy Explain}
+\textit{https://www.iceeet.com/speed-torque-characteristics/}
+
+
+\bibitem{AI Controlled RC Car}
+Vignesh, Vimal. \textit{Autonomous RC car using Raspberry Pi and Neural Networks}\\
+\textit{ https://github.com/multunus/autonomous-rc-car}
+
+
+\bibitem{Operation of radio-controlled car using face image}
+Chomtip Pornpanomchai, Burin Wiranurak, Woraphol Weerawut, Linjong Kawrungruang.\textit{Operation of a radio-controlled car using face images.}\\
+\textit{https://ieeexplore.ieee.org/document/5558586}
+
+
+\bibitem{Android Control RC car}
+M. kalaiarasu, Sathish kumar, S. krishnan narayanan.
+\textit{IOT POWERED ANDROID CONTROLLED
+RC CAR}
+Arjun College of Technology, Coimbatore, Tamilnadu, India.
+\textit{https://www.ijcrt.org/papers/IJCRTICLI011.pdf}
+
+
+\bibitem{Voice controlled RC Car}
+Abikshit Timsina, Dev Chandra Sharma, Nirmala Sharma
+Allen Bhutia, Sujala Pardhan.
+\textit{VOICE COMMAND ROBOTICS CAR.
+}International Research journal of Modernization in Engineering Technology and Science
+\textit{https://www.irjmets.com/uploadedfiles/paper/volume2/issue_6_june_2020/1963/1628083068.pdf}
+
+
+\bibitem{Component Data Sheet}
+\textit{https://components101.com/}
+
+
+\bibitem{RFcar}
+Mayoogh Girish\\
+\textit{https://maker.pro/pcb/projects/remote-control-car}\\
+
+
+\bibitem{BillofMaterial}
+\textit{https://quartzcomponents.com/}
+
+\end{thebibliography}
+%\par\noindent\rule{\textwidth}{0.4pt}
+\appendix
+\begin{center}
+ \section{Appendix A}   
+\end{center}
+
+\subsection{Project Updates}
+If any new idea is implemented further during the project, it will be uploaded on the GitHub repository whose link is given below.\\
+
+\textit{https://github.com/ICTGROUP4/Major-Project}\\
+
+The repository also consists of the 3-D AutoCAD design of the car, the schematic, and the PCB design of the circuits.
+
+
+
+\end{document}
+
